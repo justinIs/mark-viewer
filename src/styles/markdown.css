@@ -236,13 +236,19 @@ body {
 
 /* Mermaid diagrams */
 .mermaid-diagram {
-  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 500px;
   margin-bottom: 16px;
+  border: 1px solid var(--md-border);
+  border-radius: 6px;
+  background: var(--md-code-bg);
+  overflow: hidden;
 }
 
 .mermaid-diagram svg {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
 
 /* Mermaid error display */

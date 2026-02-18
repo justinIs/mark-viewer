@@ -2,6 +2,7 @@ import { renderMarkdown } from "./renderer";
 import { startPolling } from "./poller";
 import { initToggle, toggle, updateRaw } from "./toggle";
 import mermaid from "mermaid";
+import svgPanZoom from "svg-pan-zoom";
 import "../styles/markdown.css";
 import "../styles/highlight.css";
 
@@ -20,6 +21,20 @@ function runMermaid(container: HTMLElement): void {
       wrapper.className = "mermaid-diagram";
       wrapper.innerHTML = svg;
       node.replaceWith(wrapper);
+
+      const svgEl = wrapper.querySelector("svg");
+      if (svgEl) {
+        svgEl.removeAttribute("style");
+        svgEl.setAttribute("width", "100%");
+        svgEl.setAttribute("height", "100%");
+        svgPanZoom(svgEl, {
+          controlIconsEnabled: true,
+          fit: true,
+          center: true,
+          minZoom: 0.1,
+          maxZoom: 20,
+        });
+      }
     }).catch((err: unknown) => {
       const raw = err as { str?: string; message?: string };
       const message = raw?.str ?? raw?.message ?? String(err);
