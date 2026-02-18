@@ -233,3 +233,49 @@ body {
 .markdown-body input[type="checkbox"] {
   margin-right: 0.5em;
 }
+
+/* Mermaid diagrams */
+.mermaid-diagram {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mermaid error display */
+.mermaid-error {
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  border: 1px solid #f4846133;
+  background: #fff5f0;
+  color: #b91c1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  .mermaid-error {
+    background: #2d1a16;
+    border-color: #f4846133;
+    color: #fca5a5;
+  }
+}
+
+.mermaid-error-label {
+  font-weight: 600;
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.mermaid-error-message {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+  background: transparent;
+  color: inherit;
+}
