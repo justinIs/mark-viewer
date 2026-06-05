@@ -31,5 +31,5 @@
       "description": "Toggle between raw and rendered Markdown"
     }
   },
-  "permissions": ["activeTab"]
+  "permissions": ["activeTab", "storage"]
 }

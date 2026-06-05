@@ -71,69 +71,67 @@
 }
 
 /* Dark theme overrides */
-@media (prefers-color-scheme: dark) {
-  .hljs-comment,
-  .hljs-quote {
-    color: #8b949e;
-  }
+:root.mv-dark .hljs-comment,
+:root.mv-dark .hljs-quote {
+  color: #8b949e;
+}
 
-  .hljs-keyword,
-  .hljs-selector-tag,
-  .hljs-subst {
-    color: #ff7b72;
-  }
+:root.mv-dark .hljs-keyword,
+:root.mv-dark .hljs-selector-tag,
+:root.mv-dark .hljs-subst {
+  color: #ff7b72;
+}
 
-  .hljs-string,
-  .hljs-doctag,
-  .hljs-addition {
-    color: #a5d6ff;
-  }
+:root.mv-dark .hljs-string,
+:root.mv-dark .hljs-doctag,
+:root.mv-dark .hljs-addition {
+  color: #a5d6ff;
+}
 
-  .hljs-number,
-  .hljs-literal {
-    color: #79c0ff;
-  }
+:root.mv-dark .hljs-number,
+:root.mv-dark .hljs-literal {
+  color: #79c0ff;
+}
 
-  .hljs-built_in,
-  .hljs-type,
-  .hljs-class .hljs-title {
-    color: #d2a8ff;
-  }
+:root.mv-dark .hljs-built_in,
+:root.mv-dark .hljs-type,
+:root.mv-dark .hljs-class .hljs-title {
+  color: #d2a8ff;
+}
 
-  .hljs-attr,
-  .hljs-variable,
-  .hljs-template-variable {
-    color: #ffa657;
-  }
+:root.mv-dark .hljs-attr,
+:root.mv-dark .hljs-variable,
+:root.mv-dark .hljs-template-variable {
+  color: #ffa657;
+}
 
-  .hljs-name,
-  .hljs-tag {
-    color: #7ee787;
-  }
+:root.mv-dark .hljs-name,
+:root.mv-dark .hljs-tag {
+  color: #7ee787;
+}
 
-  .hljs-title,
-  .hljs-section {
-    color: #79c0ff;
-    font-weight: bold;
-  }
+:root.mv-dark .hljs-title,
+:root.mv-dark .hljs-section {
+  color: #79c0ff;
+  font-weight: bold;
+}
 
-  .hljs-deletion {
-    color: #ffdcd7;
-    background-color: #67060c;
-  }
+:root.mv-dark .hljs-deletion {
+  color: #ffdcd7;
+  background-color: #67060c;
+}
 
-  .hljs-addition {
-    color: #aff5b4;
-    background-color: #033a16;
-  }
+:root.mv-dark .hljs-addition {
+  color: #aff5b4;
+  background-color: #033a16;
+}
 
-  .hljs-meta {
-    color: #79c0ff;
-  }
+:root.mv-dark .hljs-meta {
+  color: #79c0ff;
+}
 
-  .hljs-symbol,
-  .hljs-bullet,
-  .hljs-link {
-    color: #79c0ff;
-  }
+:root.mv-dark .hljs-symbol,
+:root.mv-dark .hljs-bullet,
+:root.mv-dark .hljs-link {
+  color: #79c0ff;
 }

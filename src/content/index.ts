@@ -1,13 +1,23 @@
 import { renderMarkdown } from "./renderer";
 import { startPolling } from "./poller";
 import { initToggle, toggle, updateRaw } from "./toggle";
+import {
+  initTheme,
+  getTheme,
+  onThemeChange,
+  createThemeSwitch,
+  type Theme,
+} from "./theme";
 import mermaid from "mermaid";
 import svgPanZoom from "svg-pan-zoom";
 import "../styles/markdown.css";
 import "../styles/highlight.css";
 
-const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-mermaid.initialize({ startOnLoad: false, theme: isDark ? "dark" : "default" });
+initTheme();
+mermaid.initialize({
+  startOnLoad: false,
+  theme: getTheme() === "dark" ? "dark" : "default",
+});
 
 let mermaidCounter = 0;
 
@@ -19,6 +29,7 @@ function runMermaid(container: HTMLElement): void {
     mermaid.render(id, source).then(({ svg }) => {
       const wrapper = document.createElement("div");
       wrapper.className = "mermaid-diagram";
+      wrapper.dataset.mermaidSource = source;
       wrapper.innerHTML = svg;
       node.replaceWith(wrapper);
 
@@ -52,6 +63,25 @@ function runMermaid(container: HTMLElement): void {
   }
 }
 
+function rerenderMermaid(container: HTMLElement, theme: Theme): void {
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: theme === "dark" ? "dark" : "default",
+  });
+  const diagrams = Array.from(
+    container.querySelectorAll<HTMLElement>(".mermaid-diagram"),
+  );
+  for (const diagram of diagrams) {
+    const source = diagram.dataset.mermaidSource;
+    if (source === undefined) continue;
+    const pre = document.createElement("pre");
+    pre.className = "mermaid";
+    pre.textContent = source;
+    diagram.replaceWith(pre);
+  }
+  runMermaid(container);
+}
+
 function getMarkdownSource(): string | null {
   const pre = document.querySelector("pre");
   if (!pre) return null;
@@ -78,6 +108,10 @@ function setup(): void {
 
   document.body.appendChild(rendered);
   document.body.appendChild(rawPre);
+
+  // Theme switch + re-render mermaid diagrams when the theme changes
+  document.body.appendChild(createThemeSwitch());
+  onThemeChange((theme) => rerenderMermaid(rendered, theme));
 
   initToggle(source, rendered, rawPre);
 
