@@ -7,5 +7,11 @@ export default defineConfig({
   plugins: [crx({ manifest })],
   build: {
     outDir: "dist",
+    rollupOptions: {
+      // Pages that aren't referenced from the manifest directly
+      input: {
+        viewer: "src/viewer/viewer.html",
+      },
+    },
   },
 });

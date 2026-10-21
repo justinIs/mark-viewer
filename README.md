@@ -5,6 +5,9 @@ A Chrome extension that automatically renders local `.md` files opened via `file
 ## Features
 
 - **Automatic rendering** - open any local `.md` or `.markdown` file and it renders instantly
+- **File tree sidebar** - browse and jump between files in the surrounding folder or git repo
+- **Folder view** - open a local directory to get a file listing with its README rendered below
+- **Code viewer** - other text files open with syntax highlighting, line numbers and linkable lines
 - **Light/dark theme** - follows your system preference via `prefers-color-scheme`
 - **Syntax highlighting** - fenced code blocks with language support
 - **Mermaid diagrams** - renders diagrams with pan and zoom controls
@@ -32,12 +35,34 @@ A Chrome extension that automatically renders local `.md` files opened via `file
 
 Open any local `.md` file in Chrome (e.g. `File > Open File` or drag into the browser). The markdown is rendered automatically.
 
+Open a local folder (e.g. `file:///home/you/notes/`) to get a file listing with the folder's README rendered below it.
+
 | Action | How |
 |---|---|
 | Toggle raw/rendered | `Cmd+Shift+M` / `Ctrl+Shift+M` |
 | Toggle raw/rendered | Click the toolbar icon |
 
 The toolbar icon shows an **MD** badge on tabs with active markdown rendering.
+
+### File tree sidebar
+
+Markdown and folder pages show a file tree on the left:
+
+- **Root** - opening a folder makes it the root. Opening a file directly uses the nearest git repository above it, or the file's own folder if there isn't one. Use the ↑ button to move the root up a level.
+- **Navigation** - click a name to open it, or the chevron to expand a folder in place. The tree, root and expanded folders are remembered per tab as you navigate.
+- **Layout** - drag the sidebar's right edge to resize it, or hide it with the panel button. Both are remembered.
+- Dotfiles are hidden in the tree (they're still shown in the folder view).
+
+### Code viewer
+
+Code and other text files open in the extension's viewer page, with the same sidebar, syntax highlighting, line numbers and live reload.
+
+- **Line links** - click a line number to highlight it; the URL (`…#L42`) links straight to that line.
+- **Raw / Copy** - open the file in Chrome's plain view, or copy its contents.
+- **Opening files directly** - text files Chrome would show as plain text (e.g. `file:///…/app.py`) are redirected to the viewer. Add `#raw` to the URL to skip that.
+- Images, PDFs, HTML and media files open in Chrome's own viewers.
+
+The viewer exists because Chrome downloads some text files instead of displaying them, depending on the system's MIME types (on Linux, typically `.sh`, `.yaml`, `.toml`, `.tsx`, `.sql`, `.rb`, `.php`, `.csv`). Links from the tree, folder listings and rendered markdown go through the viewer, so these files open normally. Typing their `file://` URL directly will still download them.
 
 > **Auto-reload:** edit and save the file in any text editor and the browser view updates within ~1 second.
 

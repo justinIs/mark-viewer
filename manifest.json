@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Mark Viewer",
   "version": "1.0.0",
-  "description": "Renders local Markdown files as beautifully formatted HTML.",
+  "description": "Renders local Markdown files as beautifully formatted HTML, with a file tree for browsing local folders.",
   "icons": {
     "16": "src/icons/icon-16.png",
     "48": "src/icons/icon-48.png",
@@ -14,9 +14,31 @@
   "content_scripts": [
     {
       "matches": ["file:///*"],
-      "include_globs": ["*://*/*.md", "*://*/*.markdown"],
+      "include_globs": [
+        "*://*/*.md",
+        "*://*/*.markdown",
+        "file:///",
+        "file:///*/"
+      ],
       "js": ["src/content/index.ts"],
       "run_at": "document_idle"
+    },
+    {
+      "matches": ["file:///*"],
+      "exclude_globs": [
+        "*://*/*.md",
+        "*://*/*.markdown",
+        "file:///",
+        "file:///*/"
+      ],
+      "js": ["src/content/redirect.ts"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/viewer/viewer.html"],
+      "matches": ["file:///*"]
     }
   ],
   "action": {

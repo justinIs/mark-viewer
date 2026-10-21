@@ -1,3 +1,5 @@
+import { fetchFile } from "./fs";
+
 const POLL_INTERVAL = 1000;
 
 let lastHash: string | null = null;
@@ -9,20 +11,6 @@ async function sha256(text: string): Promise<string> {
   return Array.from(new Uint8Array(buf))
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
-}
-
-function fetchFile(url: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    chrome.runtime.sendMessage({ type: "fetch-file", url }, (response) => {
-      if (chrome.runtime.lastError) {
-        reject(new Error(chrome.runtime.lastError.message));
-      } else if (response?.error) {
-        reject(new Error(response.error));
-      } else {
-        resolve(response.text);
-      }
-    });
-  });
 }
 
 export function startPolling(
