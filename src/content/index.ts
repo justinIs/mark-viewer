@@ -1,4 +1,4 @@
-import { renderMarkdown } from "./renderer";
+import { renderMarkdown, scrollToAnchor } from "./renderer";
 import { startPolling } from "./poller";
 import { initToggle, toggle, updateRaw } from "./toggle";
 import { initTheme, getTheme, onThemeChange, createThemeSwitch } from "./theme";
@@ -47,6 +47,10 @@ function setupMarkdown(): void {
   initSidebar();
 
   initToggle(source, rendered, rawPre);
+
+  // The headings didn't exist when Chrome loaded the page, so jump to the
+  // #anchor ourselves
+  scrollToAnchor(rendered);
 
   // Notify background we're on a markdown page
   chrome.runtime.sendMessage({ type: "markdown-active" });

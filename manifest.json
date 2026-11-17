@@ -16,7 +16,9 @@
       "matches": ["file:///*"],
       "include_globs": [
         "*://*/*.md",
+        "*://*/*.md#*",
         "*://*/*.markdown",
+        "*://*/*.markdown#*",
         "file:///",
         "file:///*/"
       ],
@@ -27,7 +29,9 @@
       "matches": ["file:///*"],
       "exclude_globs": [
         "*://*/*.md",
+        "*://*/*.md#*",
         "*://*/*.markdown",
+        "*://*/*.markdown#*",
         "file:///",
         "file:///*/"
       ],
